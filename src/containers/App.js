@@ -1,31 +1,41 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import ErrorBoudry from "../components/ErrorBoundry";
+import { setSearchField } from "../Actions";
 
 import "./app.css";
+
+const mapStateToProps = (state) => {
+  return {
+    searchField: state.searchField,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+  };
+};
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       robots: [],
-      searchField: "",
     };
-  }
-
-  onSearchChange(filter) {
-    this.setState({ searchField: filter });
   }
 
   render() {
     const filteredRobots = this.getFilteredRobots();
+    const { onSearchChange } = this.props;
 
     return (
       <Fragment>
         <header className="header">
           <h1 className="header_title">RBF</h1>
-          <SearchBox searchChange={(filter) => this.onSearchChange(filter)} />
+          <SearchBox searchChange={onSearchChange} />
         </header>
         <main className="main">
           <ErrorBoudry>
@@ -37,8 +47,9 @@ class App extends React.Component {
   }
 
   getFilteredRobots() {
+    const { searchField } = this.props;
     return this.state.robots.filter((r) =>
-      r.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+      r.name.toLowerCase().includes(searchField.toLowerCase())
     );
   }
 
@@ -50,4 +61,5 @@ class App extends React.Component {
   }
 }
 
-export default App;
+//connect returns another function -> higher order function
+export default connect(mapStateToProps, mapDispatchToProps)(App);
