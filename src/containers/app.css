@@ -1,0 +1,11 @@
+.header {
+    text-align: center;
+}
+
+.header_title {
+    display: inline-block;
+    background: linear-gradient(to left, transparent, purple);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
