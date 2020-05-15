@@ -11,7 +11,7 @@ const CardList = (props) => {
         return <Card key={i} id={u.id} name={u.name} email={u.email} />;
       })}
     </div>
-  ) : <h2>Loading...</h2>;
+  ) : <h2>Nothing found!</h2>;
 };
 
 export default CardList;
