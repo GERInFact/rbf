@@ -54,10 +54,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((res) => this.setState({ robots: res }))
-      .catch((err) => console.log(err.message));
+
   }
 }
 
