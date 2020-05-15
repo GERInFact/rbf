@@ -9,7 +9,7 @@ const SearchBox = (props) => {
         type="search"
         placeholder="search robots"
         className="search-box_input"
-        onChange={(e) => searchChange(e.target.value)}
+        onChange={searchChange}
       />
     </div>
   );
