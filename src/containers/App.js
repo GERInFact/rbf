@@ -3,33 +3,34 @@ import { connect } from "react-redux";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import ErrorBoudry from "../components/ErrorBoundry";
-import { setSearchField } from "../Actions";
+import { setSearchField, requestRobots } from "../Actions";
 
 import "./app.css";
 
 const mapStateToProps = (state) => {
   return {
-    searchField: state.searchField,
+    searchField: state.searchRobots.searchField,
+    robots: state.requestRobots.robots,
+    isPending: state.requestRobots.isPending,
+    error: state.requestRobots.error,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots()),
   };
 };
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      robots: [],
-    };
   }
 
   render() {
     const filteredRobots = this.getFilteredRobots();
-    const { onSearchChange } = this.props;
+    const { onSearchChange, isPending } = this.props;
 
     return (
       <Fragment>
@@ -37,24 +38,28 @@ class App extends React.Component {
           <h1 className="header_title">RBF</h1>
           <SearchBox searchChange={onSearchChange} />
         </header>
-        <main className="main">
-          <ErrorBoudry>
-            <CardList users={filteredRobots} />
-          </ErrorBoudry>
-        </main>
+        {isPending ? (
+          <main className="main">
+            <ErrorBoudry>
+              <CardList users={filteredRobots} />
+            </ErrorBoudry>
+          </main>
+        ) : (
+          <h2>Loading...</h2>
+        )}
       </Fragment>
     );
   }
 
   getFilteredRobots() {
-    const { searchField } = this.props;
-    return this.state.robots.filter((r) =>
+    const { searchField, robots } = this.props;
+    return robots.filter((r) =>
       r.name.toLowerCase().includes(searchField.toLowerCase())
     );
   }
 
   componentDidMount() {
-
+    this.props.onRequestRobots();
   }
 }
 
