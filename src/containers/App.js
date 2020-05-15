@@ -38,7 +38,7 @@ class App extends React.Component {
           <h1 className="header_title">RBF</h1>
           <SearchBox searchChange={onSearchChange} />
         </header>
-        {isPending ? (
+        {!isPending ? (
           <main className="main">
             <ErrorBoudry>
               <CardList users={filteredRobots} />
