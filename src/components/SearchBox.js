@@ -6,6 +6,7 @@ const SearchBox = (props) => {
   return (
     <div className="search-box">
       <input
+        aria-label="Search field for robots"
         type="search"
         placeholder="search robots"
         className="search-box_input"
