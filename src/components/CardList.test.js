@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import CardList from "./CardList";
 
 it("expect to render CardList compoenent", () => {
-    const mockRobots = [
+    const mockUsers = [
         {
             id: 1,
             name: "Robo",
@@ -16,6 +16,6 @@ it("expect to render CardList compoenent", () => {
         }
     ];
 
-    const component = renderer.create(<CardList users={mockRobots} />);
+    const component = renderer.create(<CardList users={mockUsers} />);
     expect(component.toJSON()).toMatchSnapshot();
 });
