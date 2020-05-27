@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders MainPage without crashing 1`] = `
+Array [
+  <header
+    className="header"
+  >
+    <h1
+      className="header_title"
+    >
+      RBF
+    </h1>
+    <div
+      className="search-box"
+    >
+      <input
+        aria-label="Search field for robots"
+        className="search-box_input"
+        placeholder="search robots"
+        type="search"
+      />
+    </div>
+  </header>,
+  <main
+    className="main"
+  >
+    <h2>
+      Nothing found!
+    </h2>
+  </main>,
+]
+`;
