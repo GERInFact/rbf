@@ -28,8 +28,8 @@ export const requestRobots = (state = initialRequestState, action = {}) => {
     case REQUEST_ROBOTS_PENDING:
       return { ...state, isPending: true };
     case REQUEST_ROBOTS_SUCCESS:
-      return { ...state, isPending: false, robots: action.payload };
+      return { ...state, isPending: false, robots: action.payload || [] };
     default:
-      return { ...state, isPending: false, error: action.payload };
+      return { ...state, isPending: false, error: action.payload || "" };
   }
 };
