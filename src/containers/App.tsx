@@ -1,9 +1,16 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { setSearchField, requestRobots } from "../Actions";
 import MainPage from "../components/MainPage";
 
-const mapStateToProps = (state) => {
+export interface IUser {
+  id: number;
+  name: string;
+  email: string;
+}
+
+
+const mapStateToProps = (state: any) => {
   return {
     searchField: state.searchRobots.searchField,
     robots: state.requestRobots.robots,
@@ -12,16 +19,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onSearchChange: (event: React.SyntheticEvent<HTMLInputElement>) : void => dispatch(setSearchField(event.currentTarget.value)),
     onRequestRobots: () => dispatch(requestRobots()),
   };
 };
 
 class App extends React.Component {
   render() {
-    return <MainPage {...this.props}/>;
+    return <MainPage {...this.props} />;
   }
 
 }

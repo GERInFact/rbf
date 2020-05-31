@@ -1,9 +1,8 @@
 import React from "react";
 import "./card.css";
+import {IUser} from "../containers/App";
 
-const Card = (props) => {
-  const { id, name, email } = props;
-
+const Card = ({id, name, email}: IUser) : JSX.Element => {
   return (
     <div className="card">
       <div className="card_img-container">

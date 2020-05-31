@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import CardList from "../components/CardList";
-import SearchBox from "../components/SearchBox";
-import ErrorBoudry from "../components/ErrorBoundry";
+import CardList from "./CardList";
+import SearchBox from "./SearchBox";
+import ErrorBoudry from "./ErrorBoundry";
 
 import "./mainPage.css";
 
